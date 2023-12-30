@@ -8,7 +8,6 @@ from geopy.geocoders import Nominatim
 import time
 import pandas as pd
 import plotly.express as px
-pd.set_option('display.max_columns', None)
 
 def cardinalidad(data):
     '''Funcion para saber la cardinalidad de las varibales que tenemos en el data frame'''
@@ -21,11 +20,9 @@ def cardinalidad(data):
                 'porcentaje_cardinalidad' : (data[i].nunique()/data.shape[0])*100
             } for i in data])
     
-    df_tipo_variable = pd.DataFrame({'tipo_variable' : ['discreta', 'continua', 'continua', 'ordinal',
-            'ordinal', 'nominal', 'nominal', 'nominal', 'nominal',
-            'nominal', 'nominal', 'nominal', 'nominal', 'nominal',
-            'nominal', 'nominal', 'nominal', 'nominal', 'discreta',
-            'discreta', 'continua', 'nominal']}) #TODO
+    df_tipo_variable = pd.DataFrame({'tipo_variable' : ['nominal', 'continua', 'discreta', 'nominal', 
+                                                        'nominal', 'ordinal', 'ordinal',
+                                                        'nominal', 'ordinal', 'ordinal', 'nominal']}) #TODO
     
     df_cardinalidad = pd.concat([df_cardin,df_tipo_variable], axis = 1)
 
@@ -101,12 +98,13 @@ def graficos_box_plot(data):
                 
                 plt.axvline(media, color = media_color, linestyle = 'dashed', linewidth = 1)
                 plt.axvline(mediana, color = mediana_color, linestyle = 'dashed', linewidth = 1)
+                print(data[columna].describe().round())
             except:
                 pass
 
             plt.show()
 
-            print(data[columna].describe().round())
+            
             print('--'*30)
     except Exception as a:
         print(f"No puedo analizar la variable por este error {a}")
