@@ -92,13 +92,17 @@ def graficos_box_plot(data):
             print('--'*30)
             print(f"VARIABLE: {columna}\n")
 
-            media = data[columna].mean()
-            mediana = data[columna].median()
-
             plt.figure(figsize=(20,4))
             sns.boxplot(data[columna], orient='h')
-            plt.axvline(media, color = media_color, linestyle = 'dashed', linewidth = 1)
-            plt.axvline(mediana, color = mediana_color, linestyle = 'dashed', linewidth = 1)
+
+            try:
+                media = data[columna].mean()
+                mediana = data[columna].median()
+                
+                plt.axvline(media, color = media_color, linestyle = 'dashed', linewidth = 1)
+                plt.axvline(mediana, color = mediana_color, linestyle = 'dashed', linewidth = 1)
+            except:
+                pass
 
             plt.show()
 
