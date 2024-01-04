@@ -109,7 +109,6 @@ def graficos_box_plot(data):
                 pass
 
             plt.show()
-
             
             print('--'*30)
     except Exception as a:
@@ -150,3 +149,41 @@ def columna_sim(data):
         traceback.print_exc()
         print(f'No se pudo procesar la columna "sim" por {a}')
     return df
+
+def buscar_valor(row, palabra_nulo, *args, col):
+    columnas = ['ram', 'battery', 'display', 'camera', 'card', 'os']
+    for columna in columnas:
+        if col == 'os':
+            if (args[0] in str(row[columna])) | (args[1] in str(row[columna])):
+                return row[columna]
+        else:
+            if args[0] in str(row[columna]):
+                return row[columna]
+    return palabra_nulo
+
+def buscar_los_valores_columnas(data, columna : str):
+    '''Función que procesa las filas, buscando los valores que se corresponde a la columna pero están en otra'''
+    columnas = ['ram', 'battery', 'display', 'camera', 'card', 'os']
+
+    informacion_columnas = {
+        'ram': {'columna_n': 'ram_n', 'palabra_buscar': 'RAM'},
+        'battery': {'columna_n': 'bateria', 'palabra_buscar': 'Battery'},
+        'display': {'columna_n': 'pantalla', 'palabra_buscar': 'Display'},
+        'camera': {'columna_n': 'camara', 'palabra_buscar': 'Camera', 'palabra_nulo': 'No Rear Camera'},
+        'card': {'columna_n': 'memoria', 'palabra_buscar': 'Memory'},
+        'os': {'columna_n': 'sistema_operativo', 'palabra_buscar_1': 'Android', 'palabra_buscar_2': 'iOS'}
+    }
+
+    try:
+        informacion_columna = informacion_columnas[columna]
+        palabra_nulo = informacion_columna.get('palabra_nulo', None)
+
+        if columna == 'os':
+            data[informacion_columna['columna_n']] = data.apply(lambda row: buscar_valor(row, palabra_nulo, informacion_columna.get('palabra_buscar_1'), informacion_columna.get('palabra_buscar_2'), col = columna), axis=1)
+        else:
+            data[informacion_columna['columna_n']] = data.apply(lambda row: buscar_valor(row, palabra_nulo, informacion_columna['palabra_buscar'], col = columna), axis=1)
+            
+    except Exception.__traceback__ as a:
+        print(a)
+    
+    return data
