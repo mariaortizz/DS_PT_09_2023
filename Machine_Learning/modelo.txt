@@ -6,3 +6,5 @@
     Elastic net
 4- Clasificación (categorica)
     Regresión logística
+    SVC
+    
