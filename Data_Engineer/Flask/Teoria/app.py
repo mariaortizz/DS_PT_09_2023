@@ -27,7 +27,8 @@ if __name__ == '__main__':
     app.run(debug=True) 
     #debg true es lo que hace que puedas llevar los cambios directo a la pagina, 
     #sino que volver a pedir la pagina. Solo lo dejamos cuando estamos en prueba
-=======
+
+
 from flask import Flask, jsonify
 import numpy as np
 from datetime import datetime
@@ -61,4 +62,5 @@ def index2(name, ind):
 
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0", port=8910)
->>>>>>> upstream/main
+
+
