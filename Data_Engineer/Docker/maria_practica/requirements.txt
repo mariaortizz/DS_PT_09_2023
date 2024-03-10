@@ -1,0 +1,4 @@
+#Damos la versión de las librerías que usamos en ese momento
+Flask == 3.0.2
+pandas == 2.2.1
+scikit-learn == 1.4.0
