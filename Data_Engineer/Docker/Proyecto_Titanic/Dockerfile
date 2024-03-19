@@ -6,3 +6,7 @@ COPY ./App app
 WORKDIR app
 EXPOSE 5001
 CMD ["python3", "app.py", "--host", "0.0.0.0", "port", "5001"]
+
+# docker build -t nombre_imagen .
+
+# docker run -d --name nombre-app -p 5001:5001 nombre_imagen 
