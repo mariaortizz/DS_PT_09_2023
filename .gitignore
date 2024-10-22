@@ -164,3 +164,6 @@ Prof/
 Practicas/
 data_analisis/
 .venv_new/
+catboost_info/
+*.npz
+*.mmap
