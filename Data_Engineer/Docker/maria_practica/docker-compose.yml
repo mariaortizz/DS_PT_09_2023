@@ -1,0 +1,11 @@
+version: "3.9"
+
+services:
+  iris_app:
+  build: .
+  ports:
+    - "5000:5000"
+
+#lo que hace el docker compose es crear lo mismo
+#que antes pero en una sola linea
+#docker-compose up -d --build

@@ -1,0 +1,9 @@
+version: "3.9"
+
+services:
+  iris_app:
+    build: .
+    ports:
+      - "5001:5001"
+
+# docker-compose up -d --build

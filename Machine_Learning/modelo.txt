@@ -1,0 +1,10 @@
+1- Regresión lineal (continua)
+2- Regresión polinomica (continua)
+3- Regularización (continua)
+    Lasso
+    Ridge
+    Elastic net
+4- Clasificación (categorica)
+    Regresión logística
+    SVC
+    
